@@ -1,0 +1,30 @@
+# Render.com Blueprint: Dashboard -> New -> Blueprint -> shu repozitoriyani tanlang.
+# MUHIM: SQLite bazasi va yuklangan rasmlar /var/data (doimiy disk) da saqlanadi.
+# Doimiy disk faqat pullik rejada (starter va yuqori) mavjud. Bepul rejada har qayta ishga tushishda
+# ma'lumotlar (foydalanuvchilar, xabarlar, rasmlar) o'chib ketadi.
+services:
+  - type: web
+    name: anonim-chat-hevorix
+    runtime: python
+    plan: starter
+    region: frankfurt            # O'zbekistonga eng yaqinlaridan biri
+    buildCommand: pip install -r requirements.txt
+    # Faqat 1 ta worker: onlayn ulanishlar va tezlik limitlari xotirada saqlanadi.
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT --proxy-headers --forwarded-allow-ips='*'
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.3
+      - key: TERMCHAT_DATA_DIR
+        value: /var/data
+      - key: TERMCHAT_TZ_OFFSET
+        value: "5"
+      - key: TERMCHAT_MASTER_KEY       # bazani shifrlash kaliti: tasodifiy uzun qator (python -c "import secrets;print(secrets.token_urlsafe(48))")
+        sync: false
+      - key: TERMCHAT_ADMIN_PASSWORD   # @Hevorix (ega) paroli — Dashboard'da o'zingiz kiritasiz (kamida 6 belgi)
+        sync: false
+    disk:
+      name: termchat-data
+      mountPath: /var/data
+      sizeGB: 1

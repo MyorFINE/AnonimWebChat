@@ -1,0 +1,16 @@
+# /etc/systemd/system/termchat.service
+[Unit]
+Description=Anonim Chat by Hevorix
+After=network.target
+
+[Service]
+User=termchat
+WorkingDirectory=/opt/termchat
+ExecStart=/opt/termchat/.venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000 --proxy-headers
+Restart=always
+Environment=TERMCHAT_DATA_DIR=/var/lib/termchat
+# Kalitni alohida faylda saqlang (chmod 600): EnvironmentFile=/etc/termchat.env  ichida TERMCHAT_MASTER_KEY=...
+EnvironmentFile=-/etc/termchat.env
+
+[Install]
+WantedBy=multi-user.target
