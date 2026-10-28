@@ -1,0 +1,12 @@
+services:
+  termchat:
+    build: .
+    restart: unless-stopped
+    environment:
+      TERMCHAT_TZ_OFFSET: "5"
+    volumes:
+      - termchat-data:/data
+    ports:
+      - "127.0.0.1:8000:8000"   # tashqariga nginx orqali chiqariladi
+volumes:
+  termchat-data:

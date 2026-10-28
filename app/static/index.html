@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#17212b">
+<title>Anonim Chat by Hevorix</title>
+<link rel="stylesheet" href="/static/css/style.css" data-sri>
+<script src="/static/js/theme.js" data-sri></script>
+</head>
+<body>
+
+<!-- ======= SVG: gradientlar va ikonkalar ======= -->
+<svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
+  <symbol id="i-vb" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M23 12l-2.44-2.79.34-3.69-3.61-.82-1.89-3.2L12 2.96 8.6 1.5 6.71 4.69 3.1 5.5l.34 3.7L1 12l2.44 2.79-.34 3.7 3.61.82L8.6 22.5l3.4-1.47 3.4 1.46 1.89-3.19 3.61-.82-.34-3.69L23 12z"/>
+    <path pathLength="20" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M7.6 12.4l3 3 5.9-6.1"/>
+  </symbol>
+  <symbol id="i-dots" viewBox="0 0 24 24"><path fill="currentColor" d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></symbol>
+  <symbol id="i-reply" viewBox="0 0 24 24"><path fill="currentColor" d="M10 9V5l-7 7 7 7v-4.1c5 0 8.5 1.6 11 5.1-1-5-4-10-11-11z"/></symbol>
+  <symbol id="i-attach" viewBox="0 0 24 24"><path fill="currentColor" d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path fill="currentColor" d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></symbol>
+  <symbol id="i-ban" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8 1.85 0 3.55.63 4.9 1.69L5.69 16.9A7.902 7.902 0 0 1 4 12zm8 8c-1.85 0-3.55-.63-4.9-1.69L18.31 7.1A7.902 7.902 0 0 1 20 12c0 4.42-3.58 8-8 8z"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path fill="currentColor" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path fill="currentColor" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path fill="currentColor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24"><path fill="currentColor" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path fill="currentColor" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><path fill="currentColor" d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></symbol>
+  <symbol id="i-checks" viewBox="0 0 24 24"><path fill="currentColor" d="M18 7l-1.41-1.41-6.34 6.34 1.41 1.41L18 7zm4.24-1.41L11.66 16.17 7.48 12l-1.41 1.41L11.66 19l12-12-1.42-1.41zM.41 13.41L6 19l1.41-1.41L1.83 12 .41 13.41z"/></symbol>
+  <symbol id="i-group" viewBox="0 0 24 24"><path fill="currentColor" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><path fill="currentColor" d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4zM9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></symbol>
+  <symbol id="i-logout" viewBox="0 0 24 24"><path fill="currentColor" d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5a2 2 0 0 0-2 2v4h2V5h14v14H5v-4H3v4a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><path fill="currentColor" d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1z"/></symbol>
+  <symbol id="i-select" viewBox="0 0 24 24"><path fill="currentColor" d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></symbol>
+  <symbol id="i-dl" viewBox="0 0 24 24"><path fill="currentColor" d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></symbol>
+  <symbol id="i-ghost" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C7.58 2 4 5.58 4 10v10.5c0 .6.72.9 1.15.48l1.7-1.7c.2-.2.5-.2.7 0l1.7 1.7c.2.2.5.2.7 0l1.7-1.7c.2-.2.5-.2.7 0l1.7 1.7c.2.2.5.2.7 0l1.7-1.7c.2-.2.5-.2.7 0l1.7 1.7c.43.42 1.15.12 1.15-.48V10c0-4.42-3.58-8-8-8zm-3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm6 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path fill="currentColor" d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path fill="currentColor" d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><path fill="currentColor" d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path fill="currentColor" d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><path fill="currentColor" d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1s3.1 1.39 3.1 3.1v2z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path fill="currentColor" d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></symbol>
+</svg>
+
+<!-- ======= KIRISH ======= -->
+<div id="auth">
+  <div class="auth-card">
+    <div class="logo"><svg class="ic"><use href="#i-send"/></svg></div>
+    <h1>Anonim Chat <span class="by">by Hevorix</span></h1>
+    <p class="auth-sub">Do'stlar va jamoa bilan tez va qulay muloqot</p>
+    <div class="seg">
+      <button id="tabL" class="on" type="button">Kirish</button>
+      <button id="tabR" type="button">Ro'yxatdan o'tish</button>
+    </div>
+    <form id="form" autocomplete="on">
+      <label class="fl">Username
+        <input id="f_user" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="20" required>
+      </label>
+      <label id="nickWrap" class="fl hidden">Ismingiz (nickname)
+        <input id="f_nick" type="text" maxlength="24">
+      </label>
+      <label class="fl">Parol
+        <input id="f_pass" type="password" autocomplete="current-password" maxlength="128" required>
+      </label>
+      <div class="hint hidden" id="regHint">Username: 3–20 belgi (a-z, 0-9, _). Katta-kichik harf farqsiz. Uni keyin o'zgartirib bo'lmaydi. Xabarlar parolingizdan hosil bo'lgan kalitlar bilan shifrlanadi: parolni yo'qotsangiz, tiklab bo'lmaydi.</div>
+      <div id="unameChk" class="uchk hidden" role="status"></div>
+      <div id="autherr" role="alert"></div>
+      <button class="btn" id="submitBtn" type="submit">Kirish</button>
+    </form>
+  </div>
+</div>
+
+<!-- ======= ILOVA ======= -->
+<div id="app" class="hidden">
+  <div id="connbar" class="connbar hidden">Ulanish uzildi, qayta ulanmoqda…</div>
+
+  <aside id="side">
+    <div class="side-head">
+      <button id="menuBtn" class="icon-btn" type="button" aria-label="Menyu"><svg class="ic"><use href="#i-menu"/></svg></button>
+      <label class="search">
+        <svg class="ic"><use href="#i-search"/></svg>
+        <input id="search" type="search" placeholder="Qidirish" autocomplete="off" spellcheck="false">
+      </label>
+      <button id="moreBtn" class="icon-btn hidden" type="button" aria-label="Admin amallari"><svg class="ic"><use href="#i-dots"/></svg></button>
+    </div>
+    <div id="menu" class="dropdown hidden"></div>
+    <div id="amenu" class="dropdown right hidden"></div>
+    <div class="tabs">
+      <button type="button" data-tab="chats" class="on">Chatlar <span id="chatsBadge" class="pill hidden"></span></button>
+      <button type="button" data-tab="members">A'zolar</button>
+    </div>
+    <div id="list" class="list"></div>
+  </aside>
+
+  <main id="main">
+    <div id="empty" class="empty"><span>Suhbatni tanlang</span></div>
+
+    <section id="chat" class="chat hidden">
+      <header class="chead">
+        <button id="backBtn" class="icon-btn back" type="button" aria-label="Orqaga"><svg class="ic"><use href="#i-back"/></svg></button>
+        <button id="hinfo" class="hinfo" type="button">
+          <span id="hav"></span>
+          <span class="ht"><span id="htitle" class="htitle"></span><span id="hsub" class="hsub"></span></span>
+        </button>
+        <button id="encBtn" class="icon-btn enc-btn" type="button" aria-label="Shifrlash: server nimani ko'radi?" title="Shifrlash: xabar qanday shifrlanadi, server nimani ko'radi"><svg class="ic"><use href="#i-lock"/></svg></button>
+        <button id="chMore" class="icon-btn hidden" type="button" aria-label="Suhbat amallari"><svg class="ic"><use href="#i-dots"/></svg></button>
+      </header>
+
+      <header id="selbar" class="selbar">
+        <button id="selCancel" class="icon-btn" type="button" aria-label="Bekor qilish"><svg class="ic"><use href="#i-close"/></svg></button>
+        <div class="sel-t"><b id="selCount">0</b> <span>ta tanlandi</span></div>
+        <button id="selAll" class="sel-all" type="button">Hammasi</button>
+        <button id="selDel" class="sel-del" type="button" aria-label="Tanlanganlarni o'chirish"><svg class="ic"><use href="#i-trash"/></svg><span>O'chirish</span></button>
+      </header>
+
+      <div id="msgs" class="msgs"></div>
+      <button id="toBottom" class="to-bottom hidden" type="button" aria-label="Pastga">
+        <svg class="ic"><use href="#i-down"/></svg><span id="tbBadge" class="pill hidden"></span>
+      </button>
+
+      <div id="editbar" class="editbar hidden">
+        <svg class="ic"><use href="#i-edit"/></svg>
+        <div class="eb-t"><b>Tahrirlash</b><span id="ebText"></span></div>
+        <button id="ebCancel" class="icon-btn" type="button" aria-label="Bekor qilish"><svg class="ic"><use href="#i-close"/></svg></button>
+      </div>
+      <div id="replybar" class="editbar hidden">
+        <svg class="ic"><use href="#i-reply"/></svg>
+        <div class="eb-t"><b id="rbName"></b><span id="rbText"></span></div>
+        <button id="rbCancel" class="icon-btn" type="button" aria-label="Bekor qilish"><svg class="ic"><use href="#i-close"/></svg></button>
+      </div>
+      <div id="imgbar" class="editbar hidden">
+        <img id="ibThumb" class="ib-thumb" alt="">
+        <span id="ibIcon" class="ib-ico hidden"><svg class="ic"><use href="#i-file"/></svg></span>
+        <div class="eb-t"><b id="ibTitle">Rasm</b><span id="ibInfo">Izoh yozib yuboring (ixtiyoriy)</span></div>
+        <button id="ibCancel" class="icon-btn" type="button" aria-label="Bekor qilish"><svg class="ic"><use href="#i-close"/></svg></button>
+      </div>
+      <div id="deadbar" class="deadbar">Bu akkaunt o'chirilgan. Unga xabar yuborib bo'lmaydi.</div>
+      <div id="lockbar" class="lockbar">🔒 Umumiy chat hozir adminlar tomonidan qulflangan. Lichkada yozishingiz mumkin.</div>
+      <footer id="composer" class="composer">
+        <button id="attachBtn" class="icon-btn" type="button" aria-label="Fayl yuborish" title="Fayl yuborish (50 MB gacha)"><svg class="ic"><use href="#i-attach"/></svg></button>
+        <button id="recCancel" class="icon-btn rec-cancel" type="button" aria-label="Yozuvni bekor qilish" title="Bekor qilish (Esc)"><svg class="ic"><use href="#i-trash"/></svg></button>
+        <div id="recbar" class="recbar" aria-live="polite"><span class="recdot" aria-hidden="true"></span><b id="recTime">0:00</b><span id="recLbl">Ovoz o'zgartirilib shifrlanadi</span></div>
+        <textarea id="inp" rows="1" maxlength="1000" autocomplete="off" placeholder="Xabar yozing…"></textarea>
+        <button id="micBtn" class="send mic" type="button" aria-label="Ovozli xabar yozish" title="Ovozli xabar: bosing — yozish, yana bosing — yuborish"><svg class="ic ic-mic"><use href="#i-mic"/></svg><svg class="ic ic-snd"><use href="#i-send"/></svg></button>
+        <button id="sendBtn" class="send" type="button" aria-label="Yuborish"><svg class="ic"><use href="#i-send"/></svg></button>
+      </footer>
+    </section>
+  </main>
+</div>
+
+<div id="modal" class="modal hidden"><div id="sheet" class="sheet" role="dialog"></div></div>
+<div id="ctx" class="ctx hidden"></div>
+<div id="dlg" class="dlg hidden" aria-hidden="true"></div>
+<div id="toasts" aria-live="polite"></div>
+<input type="file" id="file" accept="image/png,image/jpeg,image/webp,image/gif" class="hidden">
+<input type="file" id="imgFile" class="hidden">
+<div id="lightbox" class="lightbox hidden"><img id="lbImg" alt=""></div>
+
+<script src="/static/js/crypto.js" defer data-sri></script>
+<script src="/static/js/e2ee.js" defer data-sri></script>
+<script src="/static/js/voice.js" defer data-sri></script>
+<script src="/static/js/app.js" defer data-sri></script>
+</body>
+</html>
